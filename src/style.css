@@ -23,7 +23,7 @@ li {
 }
 
 img{
-    height: 64px;
+    height: 70px;
 }
 
 .head{
@@ -65,4 +65,30 @@ img{
 
 .active:hover{
     cursor: default;
+}
+
+.forcast{
+    color: #000000;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#forcast-day{
+    opacity: 0.5;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+#minimum{
+    opacity: 0.5;
+    font-size: 14px;
+}
+
+#maximum{
+    opacity: 0.7;
+    font-size: 16px;
+}
+
+#img-forcast{
+    height: 35px;
 }
