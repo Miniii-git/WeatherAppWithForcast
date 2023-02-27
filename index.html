@@ -13,8 +13,54 @@
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
+<body>
     <div class="container">
-
+        <div class="wrap">
+            <div class="body-text">
+                <form id="search-form">
+                    <div class="row mb-3">
+                        <div class="col-9">
+                            <input type="text" 
+                            placeholder="Search a City" 
+                            class="form-control"
+                            autocomplete="off"
+                            id="search-input">
+                        </div>
+                        <div class="col-3">
+                            <input type="submit" 
+                            value="Search" 
+                            class="btn btn-primary w-100">
+                        </div>
+                    </div>
+				</form>
+                <div class="head">
+                    <h1 id="city">City</h1>
+                    <ul>
+                        <li>Last updated: <span id="day"></span> <span id="hour"></span>:<span id="min"></span></li>
+                        <li id="wea-description"></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-6 d-flex" >
+                        <img src="" alt="" id="image">
+						<div id="weather-degree">
+                        	<span id="degree"></span><span class="units"><a href="" id="celcius" class="active">°C</a>|<a href="" id="fahrenheit">°F</a></span>
+						</div>
+                    </div>
+                    <div class="col-6">
+                        <ul>
+                            <li>Humidity: <span id="humidity"></span>% </li>
+                            <li>Wind: <span id="speed"></span> km/h</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+			<small>
+				<a href="https://github.com/Miniii-git/vanilla_weather_app" target="_blank">
+					Open-source code
+				</a> by Mini
+            </small>
+        </div>
     </div>
     <script src="src/app.js"></script>
 </body>
