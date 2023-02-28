@@ -88,4 +88,29 @@ celcius.addEventListener("click",showTempInCelcius);
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click",showTempInFahrenheit);
 
+
+let daysForForcast = ["Wed","Thu","Fri","Sat","Sun","Mon"];
+let forcastEachDayHtml = "";
+
+daysForForcast.forEach( function(day){
+    forcastEachDayHtml = forcastEachDayHtml + `
+    <div class="col-2" >
+        <div id="forcast-day">${day}</div>
+        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" 
+        alt="" id="img-forcast">
+        <div>
+            <span id="maximum">10°</span>
+            <span id="minimum">7°</span>
+        </div>
+    </div>
+    `});
+    
+let forcast = document.querySelector("#forcast");
+forcast.innerHTML = forcastEachDayHtml
+
+
 sendCityForUrl("New York");
+
+
+
+ 
