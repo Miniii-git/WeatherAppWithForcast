@@ -12,6 +12,8 @@ function sendCityForUrl(city){
 }
 
 function getInformation(response){
+
+    console.log(response);
     let city = document.querySelector("#city");
     city.innerHTML = response.data.city
 
@@ -55,6 +57,14 @@ function getInformation(response){
     }else{
         min.innerHTML =m;
     }
+
+    getLongLatForForcast(response.data.coordinates)
+}
+
+function getLongLatForForcast(coord){
+    let apiKey = "t734d4903fba534f1644oba02ab79462";
+    let apiUrlForcast = `https://api.shecodes.io/weather/v1/forecast?lon=${coord.longitude}&lat=${coord.latitude}&key=${apiKey}`
+    axios.get(apiUrlForcast).then(displayForcastSection)
 }
 
 
@@ -67,8 +77,8 @@ function showTempInFahrenheit(event){
     degree.innerHTML = Math.round(fahrenheitTemp);
     celcius.classList.remove("active");
     fahrenheit.classList.add("active");
-
 }
+
 
 function showTempInCelcius(event){
     event.preventDefault();
@@ -89,24 +99,38 @@ let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click",showTempInFahrenheit);
 
 
-let daysForForcast = ["Wed","Thu","Fri","Sat","Sun","Mon"];
-let forcastEachDayHtml = "";
+function setDate(timestamp){
+    let date = new Date(timestamp*1000);
+    let day = date.getDay();
+    let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+    return(days[day]);
+}
 
-daysForForcast.forEach( function(day){
-    forcastEachDayHtml = forcastEachDayHtml + `
-    <div class="col-2" >
-        <div id="forcast-day">${day}</div>
-        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" 
-        alt="" id="img-forcast">
-        <div>
-            <span id="maximum">10°</span>
-            <span id="minimum">7°</span>
-        </div>
-    </div>
-    `});
-    
-let forcast = document.querySelector("#forcast");
-forcast.innerHTML = forcastEachDayHtml
+function displayForcastSection(response){
+    let forcastEachDayHtml = "";
+    console.log(response);
+    let arrayDays = response.data.daily;
+    arrayDays.forEach(function(day,index){
+    if(index<7&&index>0)
+        forcastEachDayHtml = forcastEachDayHtml + `
+            <div class="col-2" >
+                <div id="forcast-day">${setDate(arrayDays[index].time)}</div>
+                <img src="${arrayDays[index].condition.icon_url}" 
+                alt="${arrayDays[index].condition.description}" id="img-forcast">
+                <div>
+                    <span id="maximum">${Math.round(arrayDays[index].temperature.maximum)}°</span>
+                    <span id="minimum">${Math.round(arrayDays[index].temperature.minimum)}°</span>
+                </div>
+            </div>
+            `}); 
+            
+        let forcast = document.querySelector("#forcast");
+        forcast.innerHTML = forcastEachDayHtml;
+    };
+
+
+
+
 
 
 sendCityForUrl("New York");
