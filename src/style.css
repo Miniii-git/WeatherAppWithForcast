@@ -58,14 +58,6 @@ img{
     text-decoration: none;
 }
 
-.active{
-    color:rgb(135, 135, 135) ;
-    text-decoration: none; 
-}
-
-.active:hover{
-    cursor: default;
-}
 
 #forcast{
     color: #000000;
@@ -75,7 +67,7 @@ img{
 
 #forcast-day{
     opacity: 0.5;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 20px;
 }
 

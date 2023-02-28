@@ -13,13 +13,11 @@ function sendCityForUrl(city){
 
 function getInformation(response){
 
-    console.log(response);
     let city = document.querySelector("#city");
     city.innerHTML = response.data.city
 
     let degree = document.querySelector("#degree");
     degree.innerHTML = Math.round(response.data.temperature.current);
-    celciusTemp = Math.round(response.data.temperature.current);
 
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = response.data.temperature.humidity;
@@ -68,37 +66,6 @@ function getLongLatForForcast(coord){
 }
 
 
-let celciusTemp = null;
-
-function showTempInFahrenheit(event){
-    event.preventDefault();
-    let fahrenheitTemp = (celciusTemp * 9/5) + 32;
-    let degree = document.querySelector("#degree");
-    degree.innerHTML = Math.round(fahrenheitTemp);
-    celcius.classList.remove("active");
-    fahrenheit.classList.add("active");
-}
-
-
-function showTempInCelcius(event){
-    event.preventDefault();
-    let degree = document.querySelector("#degree");
-    degree.innerHTML = Math.round(celciusTemp);
-    fahrenheit.classList.remove("active");
-    celcius.classList.add("active");
-}
-
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit",changecity);
-
-let celcius = document.querySelector("#celcius");
-celcius.addEventListener("click",showTempInCelcius);
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click",showTempInFahrenheit);
-
-
 function setDate(timestamp){
     let date = new Date(timestamp*1000);
     let day = date.getDay();
@@ -108,7 +75,6 @@ function setDate(timestamp){
 
 function displayForcastSection(response){
     let forcastEachDayHtml = "";
-    console.log(response);
     let arrayDays = response.data.daily;
     arrayDays.forEach(function(day,index){
     if(index<7&&index>0)
@@ -129,8 +95,8 @@ function displayForcastSection(response){
     };
 
 
-
-
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit",changecity);
 
 
 sendCityForUrl("New York");
